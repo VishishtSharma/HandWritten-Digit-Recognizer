@@ -4,8 +4,9 @@ for i = 1:60000
     g = trainY(1,i);
     y(i,g+1)=1;
 end
+i = 0 ;
 n_hidden_neurons = 50;
-Eta = 0.01;
+Eta = 0.0001;
 w1 = randn(784,n_hidden_neurons);
 w2 = randn(n_hidden_neurons,10);
 b1 = randn(1,n_hidden_neurons);
@@ -14,8 +15,11 @@ delta1 = zeros(784,n_hidden_neurons);
 delta2 = zeros(n_hidden_neurons,10);
 del1 = zeros(n_hidden_neurons,1);
 del2 = zeros(10,1);
-
+err = ones(1,60000);
+itr = 0;
 for i = 1:60000
+   while(itr < 5)
+   itr = itr + 1 ;
     a1 = trainX(i,:)';
     a4 = double(a1);
     a2 = sigmoid(a4'*w1 + b1);
@@ -29,11 +33,15 @@ for i = 1:60000
     w2 = w2 - (Eta/60000)*delta2;
     b1 = b1 - Eta*del1';
     b2 = b2 - Eta*del2;
-    i/600
+    
+
+   
+   end
+   itr = 0;
+   i/600
 end
 
-
-
+ 
 
 
 

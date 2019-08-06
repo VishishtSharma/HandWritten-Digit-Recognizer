@@ -5,29 +5,18 @@ ct = 0 ;
 %digits
 
 
-randomdig=167;
-for i = randomdig
+
+for i = 1:10000
     a4 = testX(i,:);
-    img = reshape(a4, 28, 28)';
-    image(img);
-    hold on;
     a5 = double(a4);
-    
     a6 = sigmoid(a5*w1 + b1);
     a7 = sigmoid(a6*w2 + b2);
-    
     [z,ind]=max(a7);
-    
    if (ind-1) == double(testY(1,i))
         ct = ct + 1 ;
    end
-    %i/100;
-    disp('Prediction By NeuralNetwork Below')
-    ind-1
-    disp('Actual DIGIT in Image')
-   %double(testY(1,i))
 end
-ct/100;
+ct/100
 
     
 
